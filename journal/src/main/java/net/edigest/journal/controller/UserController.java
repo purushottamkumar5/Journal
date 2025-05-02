@@ -24,13 +24,6 @@ public class UserController {
         return userService.getAll();
     }
 
-    @PostMapping
-    public User createUser(@RequestBody User user)
-    {
-        return userService.saveNewUser(user);
-    }
-
-
     @PutMapping
     public ResponseEntity<User> updateUserByuserName(@RequestBody User user)
     {

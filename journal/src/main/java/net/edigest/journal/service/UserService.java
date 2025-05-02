@@ -1,8 +1,11 @@
 package net.edigest.journal.service;
 
+import lombok.extern.slf4j.Slf4j;
 import net.edigest.journal.entity.JournalEntry;
 import net.edigest.journal.entity.User;
 import net.edigest.journal.repository.UserRepoitory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,9 +17,12 @@ import java.util.Arrays;
 import java.util.List;
 
 @Service
+@Slf4j
 public class UserService {
     @Autowired
     UserRepoitory userRepoitory;
+
+//    private static final Logger logger= LoggerFactory.getLogger(UserService.class);
 
     private static final PasswordEncoder passwordEncoder=new BCryptPasswordEncoder();
 
@@ -55,6 +61,7 @@ public class UserService {
     public User saveNewUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRoles(Arrays.asList("USER"));
+        log.info("saved the user into database for username : {} ",user.getUserName());
         return userRepoitory.save(user);
     }
 
