@@ -24,6 +24,7 @@ public class WeatherResponse{
     @Setter
     public class Current{
 
+
 //        @JsonProperty("observation_time")
 //        private String observationTime;
         private int temperature;
