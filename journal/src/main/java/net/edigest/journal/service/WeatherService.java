@@ -30,7 +30,7 @@ public class WeatherService {
 
     public WeatherResponse getWeather(String city)
     {
-        String finalAPI=appCache.APP_CACHE.get("weather_api").replace("<city>",city).replace("<api_key>",apiKey);
+        String finalAPI=appCache.app_cache.get("weather_api").replace("<city>",city).replace("<api_key>",apiKey);
         ResponseEntity<WeatherResponse> response = restTemplate.exchange(finalAPI, HttpMethod.GET, null, WeatherResponse.class);
         WeatherResponse body = response.getBody();
         return body;
