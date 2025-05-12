@@ -3,7 +3,11 @@ package net.edigest.journal.service;
 import net.edigest.journal.controller.UserController;
 import net.edigest.journal.entity.User;
 import net.edigest.journal.repository.UserRepoitory;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -25,11 +29,33 @@ class UserServiceTest {
 //        assertNotNull(userRepoitory.findByUserName("puru"));
     }
 
-    @Test
-    public void testgetAllUsers()
+    @ParameterizedTest
+    @Disabled
+//    @CsvSource({
+//            "puru",
+//            "evening"
+//    })
+    @ValueSource(strings = {
+            "puru"
+    })
+    public void testFindByUserNames(String userName)
     {
-        assertNotNull(userController.getAll());
+        User User = userRepoitory.findByUserName(userName);
+        assertNotNull(User,"failed for "+userName);
     }
+
+    @Disabled
+    @ParameterizedTest
+    @CsvSource({
+            "1,1,2",
+            "2,2,4",
+            "3,3,6"
+    })
+    public void test(int a, int b, int expected)
+    {
+        assertEquals(expected,a+b);
+    }
+
 
 
   
