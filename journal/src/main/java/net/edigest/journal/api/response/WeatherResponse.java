@@ -60,8 +60,6 @@ public class WeatherResponse{
         public void setTemperature(int temperature) {
             this.temperature = temperature;
         }
-//        @JsonProperty("wind_speed")
-//        private int windSpeed;
 
         private int feelslike;
 
